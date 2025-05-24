@@ -17,5 +17,28 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.press-start-2p-regular {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.neon-text-green {
+  color: #fff;
+  text-shadow:
+    0 0 1rem #0fa;
+}
+
+.neon-text-pink {
+  color: #fff;
+  text-shadow:
+    0 0 1rem rgb(195, 0, 255);
+}
+
+.neon-text {
+  color: #fff;
+  text-shadow:
+    0 0 1rem rgb(255, 255, 255);
 }
