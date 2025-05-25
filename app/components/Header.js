@@ -18,20 +18,20 @@ export default function Header () {
                 <div className="flex align-middle items-center justify-center">
                     <ul className="hidden sm:flex flex-row text-black">
                         <li className="mx-4">
-                            <a>Quienes somos</a>
+                            <a href="#about-us">Quienes somos</a>
                         </li>
                         <li className="mx-4">
-                            <a>Servicios</a>
+                            <a href='#plans'>Planes</a>
                         </li>
                         <li>
-                            <a>Catalogo</a>
+                            <a href="">Catalogo</a>
                         </li>
                     </ul>
                 </div>
                 <div className="flex py-1 px-2  bg-blue-600 align-middle rounded-lg">
-                    <button className="">
+                    <a className="flex py-1 px-2" href="#contact">
                         Contactanos
-                    </button>
+                    </a>
                 </div>
             </nav>
         </header>

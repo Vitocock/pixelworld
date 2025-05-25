@@ -22,8 +22,8 @@ export default function Banner () {
                     Un lugar donde los gamers se unen.<br/> ¡Agenda tu visita y se parte de esta <br/><span className="text-blue-600 bg-gray-200  px-1 rounded-lg">gran aventura</span>!
                 </h2>
                 <h3 className="my-4">
-                    Mira nuestros <span className="text-blue-600 bg-gray-200  px-1 rounded-lg"><a>planes</a></span> o 
-                    <span className="text-blue-600 bg-gray-200  px-1 rounded-lg"><a>agenta tu visita</a></span>
+                    Mira nuestros <span className="text-blue-600 bg-gray-200  px-1 rounded-lg"><a href="#plans">planes</a></span> o 
+                    <span className="text-blue-600 bg-gray-200  px-1 rounded-lg"><a href="#contact">agenda nuestra visita.</a></span>
                 </h3>
             </div>
             <div className="w-40">
