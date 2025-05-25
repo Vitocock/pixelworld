@@ -1,7 +1,7 @@
 export default function SocialMediaIcons () {
     return (
         <div className="flex flex-col">
-            <a href="https://www.facebook.com/pixelworldgc/" >
+            <a href="https://www.facebook.com/pixelworldgc/" target="_blank">
                 <div className="mb-2 flex ">
                 <button
                     type="button"
@@ -23,7 +23,7 @@ export default function SocialMediaIcons () {
                 </p>
                 </div>
             </a>
-            <a href="https://www.instagram.com/pixelworldgc/">
+            <a href="https://www.instagram.com/pixelworldgc/" target="_blank">
                 <div className="mb-2 flex ">
                     <button
                         type="button"
@@ -45,7 +45,7 @@ export default function SocialMediaIcons () {
                     </p>
                 </div>            
             </a>
-            <a href="https://www.tiktok.com/@pixel_world_gc">
+            <a href="https://www.tiktok.com/@pixel_world_gc" target="_blank">
                 <div className="mb-2 flex ">
                     <button
                         type="button"

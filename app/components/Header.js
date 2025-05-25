@@ -24,7 +24,7 @@ export default function Header () {
                             <a href='#plans'>Planes</a>
                         </li>
                         <li>
-                            <a href="">Catalogo</a>
+                            <a href="" target="_blank">Catalogo</a>
                         </li>
                     </ul>
                 </div>

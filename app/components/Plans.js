@@ -8,7 +8,7 @@ export default function Plans() {
           </div>
           <div className="text-center text-white">
             <h2 className="text-2xl font-bold  ">Nuestros precios no incluyen traslado, consultar valor segun tu comuna.</h2>
-            <p><a>Consulta por el catalogo de juegos haciendo click aqui.</a></p>
+            <p><a href="" target="_blank">Consulta por el catalogo de juegos haciendo click aqui.</a></p>
           </div >
           <div className="mt-4 flex flex-row flex-wrap flex-between">
             <PricingCard1 />
