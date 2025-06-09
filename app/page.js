@@ -8,7 +8,7 @@ import Contact from "./components/Contact";
 
 export default function Home() {
   return (
-    <div className="w-full sm:w-2/3">
+    <div className="w-full">
       <Header />
       <Banner /> 
       <main className="py-6 px-6">

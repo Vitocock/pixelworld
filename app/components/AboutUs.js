@@ -1,6 +1,6 @@
 export default function AboutUs () {
     return (
-        <div className="my-4 flex flex-col text-black">
+        <div className="my-4 flex flex-col text-white">
             <div className="flex my-4">
             <h2 id="about-us" className="text-3xl font-bold  ">Quienes somos</h2>
             </div >

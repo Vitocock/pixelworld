@@ -12,7 +12,7 @@ import Image from "next/image"
             />
         </div>
     )
-} */
+}
 
 export default function Banner () {
     return (
@@ -34,6 +34,15 @@ export default function Banner () {
                     alt="logo"
                     />
             </div>
+        </section>
+    )
+}*/
+
+import { GlassBanner } from "./Glass"
+export default function Banner () {
+    return (
+        <section className="flex flex-row justify-around flex-wrap align-middle mt-10 px-4 py-8">
+            <GlassBanner />
         </section>
     )
 }

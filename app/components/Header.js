@@ -2,37 +2,33 @@ import Image from "next/image"
 
 export default function Header () {
     return (
-        <header className="py-1">
+        <header className="px-6 lg:px-18 py-6 bg-black/90 sticky top-0">
             <nav className="flex justify-between">
-                <div className="flex flex-row ">
+                <div className="items-center flex flex-row ">
                     <Image
                         src={"/logo-redondo.png"}
-                        width={40}
-                        height={40}
+                        width={82}
+                        height={82}
                         alt="logo"
                     />
-                    <div className="ml-4 align-middle items-center text-xl text-blue-600 font-bold hidden sm:flex">
-                        <h1>PixelWorld</h1>
-                    </div>
+                    
                 </div>
-                <div className="flex align-middle items-center justify-center">
-                    <ul className="hidden sm:flex flex-row text-black">
-                        <li className="mx-4">
+                <div className="flex align-center items-center justify-center">
+                    <ul className="hidden lg:flex text-base flex-row press-start-2p-regular uppercase">
+                        <li className="mx-8">
                             <a href="#about-us">Quienes somos</a>
                         </li>
-                        <li className="mx-4">
+                        <li className="mx-8">
                             <a href='#plans'>Planes</a>
                         </li>
-                        <li>
+                        <li className="mx-8">
                             <a href="" target="_blank">Catalogo</a>
                         </li>
                     </ul>
                 </div>
-                <div className="flex py-1 px-2  bg-blue-600 align-middle rounded-lg">
-                    <a className="flex py-1 px-2" href="#contact">
-                        Contactanos
-                    </a>
-                </div>
+                <a className="w-50 h-10 px-9 py-3 rounded-md outline outline-2 outline-offset-[-2px] inline-flex flex-col justify-center items-center mt-4" href='#plans'>
+                    <div className="text-center justify-center text-sm press-start-2p-regular uppercase tracking-wide mt-1">Contacto</div>
+                </a>
             </nav>
         </header>
     )

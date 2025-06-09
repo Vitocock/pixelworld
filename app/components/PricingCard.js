@@ -1,149 +1,15 @@
-
 import Image from "next/image"
 
-function PricingCard1 () {
+export default function PricingCard () {
     return (
-        <div className="m-1 group relative flex flex-col mx-auto w-full max-w-xs bg-white rounded-2xl shadow-2xl transition-all duration-300  p-8 xl:p-12  ">
-            <div className="border-b border-solid border-gray-200 pb-9 mb-9">
-                <div className="w-16 h-16 rounded-full bg-blue-50 mx-auto flex justify-center items-center transition-all duration-300 group-hover:bg-blue-600">
-                    <Image
-                        src={"/control.png"}
-                        width={24}
-                        height={24}
-                        alt='control'
-                    />
-                </div>
-                <h3 className="font-manrope text-2xl font-bold my-7 text-center text-blue-600">Promo 1 - Pixel Basico</h3>
-                <div className="flex items-center justify-center">
-                    <span className="font-manrope text-4xl font-medium text-gray-900">$60.000</span>
-                </div>
-            </div>
-
-            <ul className="mb-12 space-y-6 text-left text-lg text-gray-600 group-hover:text-gray-900">
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>Tiempo: 4 Horas.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>1 Consola a eleccion (PS5 o Xbox Series).</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>2 Controles + 2 Headsets.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>1 Pantalla gamer.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>Mesa + 2 sillas.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>Juegos a eleccion.</span>
-                </li>
-            </ul>
-        </div> 
-    )
-}
-
-function PricingCard2 () {
-    return (
-        <div className="m-1 group relative flex flex-col mx-auto w-full max-w-xs bg-white rounded-2xl shadow-2xl transition-all duration-300  p-8 xl:p-12  ">
-            <div className="border-b border-solid border-gray-200 pb-9 mb-9">
-                <div className="w-16 h-16 rounded-full bg-blue-50 mx-auto flex justify-center items-center transition-all duration-300 group-hover:bg-blue-600">
-                    <Image
-                        src={"/espadas.png"}
-                        width={24}
-                        height={24}
-                        alt='espadas'
-                    />
-                </div>
-            <h3 className="font-manrope text-2xl font-bold my-7 text-center text-blue-600">Promo 2 - Intermedio</h3>
-            <div className="flex items-center justify-center">
-                <span className="font-manrope text-4xl font-medium text-gray-900">$100.000</span>
+        <div class="m-1 group mx-auto max-w-[22.688rem] w-full p-4 xl:p-[1.375rem] relative bg-[radial-gradient(ellipse_127.02%_151.92%_at_15.32%_21.04%,_rgba(164.69,_238.74,_255,_0.20)_0%,_rgba(109.97,_190.80,_244.37,_0.04)_77%,_rgba(69.95,_144.07,_212.50,_0)_100%)] shadow-[2px_16px_19px_0px_rgba(0,0,0,0.09)] outline outline-2 outline-offset-[-2px] outline-sky-700 backdrop-blur-2xl inline-flex flex-col gap-5 overflow-hidden">
+            <img className="size-14 relative" src="./SVGRepo_iconCarrier.svg"></img>
+            <h3 className="self-center text-center justify-center text-white text-3xl font-['Orbitron'] uppercase leading-tight tracking-wide [text-shadow:_0px_0px_8px_rgb(0_124_255_/_0.60)]">Pixel Basico</h3>
+            <span className="self-stretch text-center justify-center text-white text-3xl font-['Exo'] uppercase leading-tight tracking-wide">$60.000</span>
+            <div className="pt-2">
+                <div className="w-2.5 h-32 left-0 origin-top-left -rotate-90 bg-white rounded-[10px] shadow-[0px_0px_7.900000095367432px_7px_rgba(21,101,185,1.00)] border-4 border-sky-500"></div>
+                <div className="w-2.5 h-32 right-0 absolute -rotate-90 bg-white rounded-[10px] shadow-[0px_0px_7.900000095367432px_7px_rgba(21,101,185,1.00)] border-4 border-sky-500"></div>
             </div>
         </div>
-
-            <ul className="mb-12 space-y-6 text-left text-lg text-gray-600 group-hover:text-gray-900">
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>Tiempo: 4 Horas.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>2 Consolas a eleccion (PS5 o Xbox Series).</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>4 Controles + 4 Headsets.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>2 Pantallas gamer.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>Mesa + 4 sillas.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>Juegos a eleccion.</span>
-                </li>
-            </ul>
-            
-        </div> 
     )
 }
-function PricingCard3 () {
-    return (
-        <div className="m-1 group relative flex flex-col mx-auto w-full max-w-xs bg-white rounded-2xl shadow-2xl transition-all duration-300  p-8 xl:p-12  ">
-            <div className="border-b border-solid border-gray-200 pb-9 mb-9">
-                <div className="w-16 h-16 rounded-full bg-blue-50 mx-auto flex justify-center items-center transition-all duration-300 group-hover:bg-blue-600">
-                    <Image
-                        src={"/planeta.png"}
-                        width={24}
-                        height={24}
-                        alt='planeta'
-                    />
-            </div>
-            <h3 className="font-manrope text-2xl font-bold my-7 text-center text-blue-600">Promo 3 - PixelWorld</h3>
-            <div className="flex items-center justify-center">
-                <span className="font-manrope text-4xl font-medium text-gray-900">$180.000</span>
-            </div>
-        </div>
-
-            <ul className="mb-12 space-y-6 text-left text-lg text-gray-600 group-hover:text-gray-900">
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>Tiempo: 4 Horas.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>4 Consola a eleccion (PS5 o Xbox Series).</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>8 Controles + 5 Headsets.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>4 Pantalla gamer.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>Mesa + 8 sillas.</span>
-                </li>
-                <li className="flex items-center space-x-3.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    <span>Juegos a eleccion.</span>
-                </li>
-            </ul>
-          
-        </div> 
-    )
-}
-
-export {PricingCard1, PricingCard2, PricingCard3}
