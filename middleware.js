@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 import { jwtVerify } from 'jose'
 
 const PUBLIC_FILE = /\.(.*)$/
-const protectedRoutes = ['/admin/plans', '/admin/products', '/admin/images']
+const protectedRoutes = ['/admin/plans', '/admin/products', '/admin/images', '/admin']
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl

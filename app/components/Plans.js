@@ -12,6 +12,7 @@ export default function Plans() {
         const res = await fetch("/api/plans/getAllActivePlans")
         if (!res.ok) throw new Error("Error al obtener los planes")
         const data = await res.json()
+        console.log(data)
         setPlans(data)
       } catch (error) {
         console.error("Error:", error)

@@ -1,13 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 
-export default function AdminLoginPage() {
+export default function AdminLoginPage({  }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,7 +23,7 @@ export default function AdminLoginPage() {
       if (!res.ok) throw new Error(data.message || 'Error al iniciar sesión')
 
       document.cookie = `token=${data.token}; path=/`
-      router.push('/admin/plans')
+      window.location.href = '/admin'
     } catch (err) {
       setError(err.message)
     }
