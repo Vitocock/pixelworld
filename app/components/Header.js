@@ -2,20 +2,14 @@ import Image from "next/image"
 
 export default function Header () {
     return (
-        <header className="px-6 lg:px-18 py-6 bg-black/90 sticky top-0">
-            <nav className="flex justify-between">
-                <div className="items-center flex flex-row ">
-                    <Image
-                        src={"/logo-redondo.png"}
-                        width={82}
-                        height={82}
-                        alt="logo"
-                    />
-                    
+        <header className="flex w-full flex-row justify-center lg:py-1 bg-black fixed top-0 transition-all z-10">
+            <nav className="flex w-[90%] sm:w-2/3 justify-between">
+                <div className="flex flex-row items-start lg:items-center">
+                    <img className= "size-16" src={"/logo-redondo.png"}/>
                 </div>
-                <div className="flex align-center items-center justify-center">
-                    <ul className="hidden lg:flex text-base flex-row press-start-2p-regular uppercase">
-                        <li className="mx-8">
+                <div className="flex lg:align-center items-center justify-center">
+                    <ul className="hidden xl:flex text-base flex-row press-start-2p-regular uppercase">
+                        <li className="mx-8 whitespace-nowrap">
                             <a href="#about-us">Quienes somos</a>
                         </li>
                         <li className="mx-8">
@@ -26,8 +20,8 @@ export default function Header () {
                         </li>
                     </ul>
                 </div>
-                <a className="w-50 h-10 px-9 py-3 rounded-md outline outline-2 outline-offset-[-2px] inline-flex flex-col justify-center items-center mt-4" href='#plans'>
-                    <div className="text-center justify-center text-sm press-start-2p-regular uppercase tracking-wide mt-1">Contacto</div>
+                <a className="w-50 h-10 px-9 py-3 rounded-md scroll-stroke inline-flex flex-col justify-center items-center mt-4 hover:scroll-shadow transition-all duration-300" href='#plans'>
+                    <div className="text-center justify-center scroll-font text-sm press-start-2p-regular uppercase tracking-wide transition-all duration-300 mt-1 hover:text-black">Contacto</div>
                 </a>
             </nav>
         </header>

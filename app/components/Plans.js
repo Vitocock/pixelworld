@@ -154,19 +154,20 @@ export default function Plans() {
   ]
 
   return (
-      <div className="my-6 flex flex-col px-2 py-4">
-          <div className="text-center text-white">
-            <h2 className="text-3xl font-bold" id="plans">Nuestros planes</h2>
+      <div className="my-6 flex flex-col justify-self-center w-5/6 py-4">
+          <div className="text-center font-[Orbitron] text-white [text-shadow:_0px_0px_33px_rgb(21_101_185_/_1.00)]">
+            <h2 className="text-6xl font-bold" id="plans">Nuestros planes</h2>
           </div>
-          <div className="text-center text-white">
-            <h2 className="text-2xl font-bold  ">Nuestros precios no incluyen traslado, consultar valor segun tu comuna.</h2>
-            <p><a href="" target="_blank">Consulta por el catalogo de juegos haciendo click aqui.</a></p>
-          </div >
-          <div className="mt-4 flex flex-row flex-wrap flex-between">
+          <div className="mt-4 mb-8 w-5/6 h-2.5 flex flex-row self-center bg-white rounded-[10px] shadow-[0px_0px_7.900000095367432px_7px_rgba(21,101,185,1.00)] border-4 border-sky-500"></div>
+          <div className="my-4 flex flex-row flex-wrap flex-between">
             {plans.map(plan => (
               <PricingCard key={plan.id} plan={plan} />
             ))}
           </div>
+          <div className="text-center text-white/70">
+            <h2 className="text-2xl font-bold  ">Nuestros precios no incluyen traslado, consultar valor segun tu comuna.</h2>
+            <p><a href="" target="_blank">Consulta por el catalogo de juegos haciendo click aqui.</a></p>
+          </div >
       </div>
     )
   }
