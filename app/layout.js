@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet"/>
       </head>
       <body
-        className={`${dmSans.className} ${geistSans.variable} flex antialiased justify-center inset-0 h-full w-full bg-black bg-[linear-gradient(to_right,#171717_0.094rem,transparent_1px),linear-gradient(to_bottom,#80808012_0.094rem,transparent_1px)] bg-[size:7rem_9rem]`}
+        className={`${dmSans.className} ${geistSans.variable} flex antialiased scroll-smooth justify-center inset-0 h-full w-full bg-black bg-[linear-gradient(to_right,#171717_0.094rem,transparent_1px),linear-gradient(to_bottom,#171717_0.094rem,transparent_1px)] bg-[size:7rem_9rem]`}
       >
         {children}
       </body>
