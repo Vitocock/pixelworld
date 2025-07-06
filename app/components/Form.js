@@ -6,14 +6,30 @@ export default function Form () {
     const [ email, setEmail ] = useState("")
     const [ content, setContent ] = useState("")
 
-    const onSubmit = (event) => {
-        event.preventDefault()
-        const data = {
-            name,
-            email,
-            content
+    const onSubmit = async (event) => {
+    event.preventDefault()
+
+        try {
+            const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, content }),
+            })
+
+            const data = await res.json()
+
+            if (!res.ok) {
+            throw new Error(data.error || 'Error al enviar')
+            }
+
+            alert('Mensaje enviado con éxito.')
+            setName('')
+            setEmail('')
+            setContent('')
+        } catch (err) {
+            console.error(err)
+            alert('Hubo un error al enviar el mensaje.')
         }
-        console.log(data)
     }
 
     const onChange = (event) => {
