@@ -84,7 +84,7 @@ export default function SocialMediaIcons () {
                         </svg>
                     </span>
                 </button>
-                <a className="text-2xl font-[Exo] ml-2 place-self-center whitespace-nowrap" href="https://api.whatsapp.com/send?phone=56966715669">
+                <a className="text-2xl font-[Exo] ml-2 place-self-center whitespace-nowrap" target="_blank" href="https://api.whatsapp.com/send?phone=56966715669">
                     +56 9 6671 5669
                 </a>
             </div>

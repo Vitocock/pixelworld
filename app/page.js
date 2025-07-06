@@ -2,13 +2,14 @@
 import Header from "./components/Header";
 import AboutUs from "./components/AboutUs";
 import Banner from "./components/Banner";
-import Galery from "./components/Galery";
+import Galery from "./components/Gallery";
 import Plans from "./components/Plans";
 import Offer from "./components/Offer";
 import Contact from "./components/Contact";
 import { useEffect } from "react";
 import Catalog from "./components/Catalog";
-import Product from "./components/Product";
+import Pacman from "./components/Pacman";
+import Products from "./components/Product";
 
 
 
@@ -17,6 +18,7 @@ export default function Home() {
     const shadows = document.querySelectorAll(".scroll-shadow");
     const stroke = document.querySelectorAll(".scroll-stroke");
     const font = document.querySelectorAll(".scroll-font");
+    const svgIcons = document.querySelectorAll(".scroll-svg path");
 
     const palette = [
       "#00ff00",
@@ -49,7 +51,11 @@ export default function Home() {
       font.forEach((el) => {
         el.style.color = color;
       });
+      svgIcons.forEach((el) => {
+        el.setAttribute("stroke", color);
+      });
     };
+
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -71,15 +77,16 @@ export default function Home() {
         }}
       ></div>
       <Banner />
-      <main className="p-6">
+      <main className="p-6 mt-6 lg:mt-28">
         <AboutUs />
-        <div class="mx-12 my-8 w-3/5 h-2.5 justify-self-center bg-white rounded-[10px] shadow-[0px_0px_31.700000762939453px_6px_rgba(4,217,255,1.00)] transition-all duration-300 scroll-stroke"></div>
+        <div className="mx-12 my-16 w-3/5 h-2.5 justify-self-center bg-white rounded-[10px] shadow-[0px_0px_31.700000762939453px_6px_rgba(0,255,0,1.00)] transition-all duration-300 border-4 border-green-500"></div>
         <Offer />
         <Galery />
         <Catalog />
-        <Product />
         <Plans />
+        <Products />
         <Contact />
+        <Pacman />
       </main>
     </div>
   );
