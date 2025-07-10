@@ -18,7 +18,7 @@ export default function Home() {
       <h1 className="mb-4 text-3xl font-bold">Panel de Productos</h1>
 
       <button
-        className="mb-2 px-4 py-2 bg-blue-600 text-white rounded"
+        className="mb-2 px-2 py-1 bg-blue-600 text-white rounded"
         onClick={() => setShowCreateModal(true)}
       >
         Crear producto
