@@ -20,6 +20,31 @@ export default function ProductList() {
     fetchProducts()
   }, [page])
 
+  const handleDelete = async (productId) => {
+    const confirmDelete = confirm("¿Estás seguro que deseas eliminar este producto?");
+    if (!confirmDelete) return;
+
+    try {
+      const res = await fetch('/api/admin/products/deleteProduct', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: productId })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || 'Error al eliminar producto');
+
+      alert("Producto eliminado correctamente");
+      fetchProducts(); // Recargar lista
+    } catch (err) {
+      console.error(err);
+      alert("Hubo un error al eliminar el producto");
+    }
+  };
+
   const onSave = () => {
     fetchProducts()
   }
@@ -42,13 +67,13 @@ export default function ProductList() {
         <h2>Lista de productos</h2>
       </div>
 
-      <div className='bg-white w-1/3 p-2 rounded'>
+      <div className='bg-white w-3/4 p-2 rounded'>
         <div className="py-2 mb-2 border-b-2 border-black">
-          <button className='underline' onClick={goToPreviousPage} disabled={page === 1}>
+          <button className='bg-blue-600 px-2 py-1 text-white rounded' onClick={goToPreviousPage} disabled={page === 1}>
             Anterior
           </button>
           <span className="mx-2">Página {page} de {totalPages}</span>
-          <button className='underline' onClick={goToNextPage} disabled={page === totalPages}>
+          <button className='bg-blue-600 px-2 py-1 text-white rounded' onClick={goToNextPage} disabled={page === totalPages}>
             Siguiente
           </button>
         </div>
@@ -57,6 +82,7 @@ export default function ProductList() {
           <thead>
             <tr>
               <th className="border px-2 py-1">Id</th>
+              <th className="border px-2 py-1">Imagen</th>
               <th className="border px-2 py-1">Nombre</th>
               <th className="border px-2 py-1">Marca</th>
               <th className="border px-2 py-1">Precio</th>
@@ -67,12 +93,18 @@ export default function ProductList() {
             {products.map(p => (
               <tr key={p.id}>
                 <td className="border px-2 py-1">{p.id}</td>
+                <td><img className="w-24" src={p.image} alt={p.name}/></td>
                 <td className="border px-2 py-1">{p.name}</td>
                 <td className="border px-2 py-1">{p.brand}</td>
                 <td className="border px-2 py-1">${p.base_price}</td>
-                <td className="border px-2 py-1 flex flex-row justify-between">
-                  <button className='underline text-blue-600' onClick={() => setEditProductId(p.id)}>Editar</button>
-                  <button className="underline text-red-600">Eliminar</button>
+                <td className="border px-2 py-1 ">
+                  <button className='bg-blue-600 text-white px-2 py-1 rounded' onClick={() => setEditProductId(p.id)}>Editar</button>
+                  <button
+                    className="bg-red-600 text-white px-2 py-1 rounded"
+                    onClick={() => handleDelete(p.id)}
+                  >
+                    Eliminar
+                  </button>
                 </td>
               </tr>
             ))}

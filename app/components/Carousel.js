@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function ImageCarousel({ images }) {
+export default function ImageCarousel({ images , interval}) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
@@ -14,6 +14,14 @@ export default function ImageCarousel({ images }) {
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
+
+  useEffect(()=> {
+    const autoplay = setInterval(()=> {
+        nextSlide();
+    }, interval)
+
+    return () => clearInterval(autoplay);
+  }, [currentIndex, interval])
 
   return (
     <div className="relative w-full overflow-hidden">
@@ -29,7 +37,7 @@ export default function ImageCarousel({ images }) {
       </div>
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition"
+        className="absolute lg:left-4 top-1/2 -translate-y-1/2 bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition"
       >
         ◀
       </button>

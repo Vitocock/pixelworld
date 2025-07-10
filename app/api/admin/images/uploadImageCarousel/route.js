@@ -19,7 +19,7 @@ export async function POST(req) {
     if (!file) return NextResponse.json({ error: 'No se recibió ninguna imagen' }, { status: 400 });
 
     const buffer = Buffer.from(await file.arrayBuffer());
-    const fileName = `${uuidv4()}-${file.name}`;
+    const fileName = `carousel/${uuidv4()}-${file.name}`;
     const bucket = process.env.AWS_BUCKET_NAME;
 
     await s3.send(new PutObjectCommand({
@@ -29,7 +29,7 @@ export async function POST(req) {
       ContentType: file.type
     }));
 
-    const imageUrl = `https://${bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/carousel/${fileName}`;
+    const imageUrl = `https://${bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`;
 
     await pool.query(
       'INSERT INTO carousel_image (image_url) VALUES ($1)',

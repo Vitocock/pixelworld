@@ -120,15 +120,15 @@ export default function Plan({ plan, onRemove }) {
 
       <div className="mt-4 flex flex-row justify-between text-white">
         <div>
-          <button className="bg-blue-600 p-1" onClick={handleDeactivate}>Desactivar</button>
+          <button className="bg-blue-600 p-1 rounded" onClick={handleDeactivate}>Desactivar</button>
         </div>
         <div>
-          <button className="bg-yellow-400 p-1" onClick={() => setIsDisabled(!isDisabled)}>Editar</button>
+          <button className="bg-yellow-400 p-1 rounded" onClick={() => setIsDisabled(!isDisabled)}>Editar</button>
         </div>
         <div>
           <button
             onClick={handleSubmit}
-            className={`p-1 ${isDisabled ? 'bg-gray-800' : 'bg-green-600'}`}
+            className={`p-1 rounded ${isDisabled ? 'bg-gray-800' : 'bg-green-600'}`}
             disabled={isDisabled}
           >
             Enviar
