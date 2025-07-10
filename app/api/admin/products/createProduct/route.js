@@ -37,7 +37,7 @@ export async function POST(req) {
 
     // 2. Subir imagen principal (banner)
     const bannerBuffer = Buffer.from(await imageFile.arrayBuffer());
-    const bannerKey = `${productId}/banner.jpg`;
+    const bannerKey = `products/${productId}/banner.jpg`;
 
     await s3.send(new PutObjectCommand({
       Bucket: process.env.AWS_BUCKET_NAME,
@@ -54,7 +54,7 @@ export async function POST(req) {
       if (!img || typeof img === 'string') continue;
 
       const buffer = Buffer.from(await img.arrayBuffer());
-      const key = `${productId}/additional_${i + 1}.jpg`;
+      const key = `products/${productId}/additional_${i + 1}.jpg`;
 
       await s3.send(new PutObjectCommand({
         Bucket: process.env.AWS_BUCKET_NAME,

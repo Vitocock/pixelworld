@@ -22,7 +22,7 @@ export default function Home() {
       <div className="flex flex-row justify-start">
         <div>
           <button
-            className="bg-green-600 text-white px-4 py-2 rounded"
+            className="bg-green-600 text-white px-2 py-1 rounded"
             onClick={() => setShowCreatePlan(true)}
           >
             Crear Plan
@@ -30,7 +30,7 @@ export default function Home() {
         </div>
         <div className="ml-5">
           <button
-            className="bg-blue-600 text-white px-4 py-2 rounded"
+            className="bg-blue-600 text-white px-2 py-1 rounded"
             onClick={() => setShowCreateResource(true)}
           >
             Crear Recurso
