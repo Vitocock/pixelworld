@@ -1,29 +1,6 @@
-import { useEffect, useState } from "react";
-
-export default function ProductCatalog({ Product, onOpen }) {
+export default function ProductCatalog({ Product, onOpen, color }) {
   const { name, brand, base_price, image } = Product;
-
-  const colors = ["#00ff00",
-      "#01F540",
-      "#02EC80",
-      "#03E3BF",
-      "#04D9FF",
-      "#0AAEFC",
-      "#1182F9",
-      "#1757F6",
-      "#1D2CF3",];
-  const [borderColorIndex, setBorderColorIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBorderColorIndex((prev) => (prev + 1) % colors.length);
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const borderColor = colors[borderColorIndex];
-
+  const borderColor = color;
   return (
     <div
       style={{ borderColor }}

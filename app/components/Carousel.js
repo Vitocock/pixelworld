@@ -37,7 +37,7 @@ export default function ImageCarousel({ images , interval}) {
       </div>
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition"
+        className="absolute lg:left-4 top-1/2 -translate-y-1/2 bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition"
       >
         ◀
       </button>
