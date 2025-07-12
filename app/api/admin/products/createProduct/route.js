@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import pool from '@/lib/db';
+import { requireAdmin } from '@/lib/requireAdmin';
 
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
@@ -10,7 +11,7 @@ const s3 = new S3Client({
   },
 });
 
-export async function POST(req) {
+export const POST = requireAdmin(async (req) => {
   try {
     const formData = await req.formData();
 
@@ -27,8 +28,8 @@ export async function POST(req) {
 
     // 1. Crear producto en la base de datos (sin imagen aún)
     const insertResult = await pool.query(
-      `INSERT INTO product (name, brand, base_price, description, image, created_at)
-       VALUES ($1, $2, $3, $4, '', NOW()) RETURNING *`,
+      `INSERT INTO product (name, brand, base_price, description, image, created_at, active)
+       VALUES ($1, $2, $3, $4, '', NOW(), false) RETURNING *`,
       [name, brand, price, description]
     );
 
@@ -84,3 +85,4 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 });
   }
 }
+)

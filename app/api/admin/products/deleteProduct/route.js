@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import pool from '@/lib/db';
+import { requireAdmin } from '@/lib/requireAdmin';
 
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
@@ -15,7 +16,7 @@ function extractS3KeyFromUrl(url) {
   return parts.slice(3).join('/'); // quita https://bucket.s3.region.amazonaws.com/
 }
 
-export async function DELETE(req) {
+export const DELETE = requireAdmin(async (req) => {
   try {
     const { id } = await req.json();
 
@@ -55,3 +56,4 @@ export async function DELETE(req) {
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 });
   }
 }
+)

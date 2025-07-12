@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3'
 import pool from '@/lib/db'
+import { requireAdmin } from '@/lib/requireAdmin'
 
 // Configurar S3
 const s3 = new S3Client({
@@ -11,7 +12,7 @@ const s3 = new S3Client({
   }
 })
 
-export async function POST(req) {
+export const POST = requireAdmin(async (req) => {
   try {
     const formData = await req.formData()
     const file = formData.get('file')
@@ -70,3 +71,4 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })
   }
 }
+)
