@@ -7,7 +7,7 @@ export async function GET() {
     const planQuery = `
       SELECT id, name, base_price, created_at, sort
       FROM plan
-      WHERE active = TRUE
+      WHERE active = false
       ORDER BY sort ASC
     `;
     const planResult = await pool.query(planQuery);

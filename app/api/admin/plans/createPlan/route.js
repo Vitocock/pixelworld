@@ -14,8 +14,8 @@ export async function POST(request) {
 
       // 1. Insertar el plan
       const planInsertQuery = `
-        INSERT INTO plan (name, base_price, created_at, active)
-        VALUES ($1, $2, NOW(), true)
+        INSERT INTO plan (name, base_price, created_at, active, sort)
+        VALUES ($1, $2, NOW(), true, 99)
         RETURNING id
       `
       const result = await client.query(planInsertQuery, [name, base_price])

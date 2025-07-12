@@ -9,7 +9,7 @@ export default function CreateResourceModal({ onClose }) {
           <h2 className="text-xl font-bold">Crear Recurso</h2>
           <button onClick={onClose} className="text-red-600 font-bold">X</button>
         </div>
-        <CreateResource />
+        <CreateResource onClose={onClose} />
       </div>
     </div>
   )

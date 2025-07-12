@@ -19,8 +19,7 @@ export default function AdminLayout({ children }) {
         <nav className="bg-blue-800 text-white p-4 flex flex-row">
           <h1 className="text-xl font-bold mr-4">Panel de Administración</h1>
           <ul className="flex flex-row gap-4">
-            <li><a href="/admin">Inicio</a></li>
-            <li><a href="/admin/plans">Planes</a></li>
+            <li><a href="/admin">Planes</a></li>
             <li><a href="/admin/products">Productos</a></li>
             <li><a href="/admin/images">Imágenes</a></li>
             <li>

@@ -96,40 +96,42 @@ export default function EditImageCarousel() {
     <div>
       <div className='my-2'>
         <h2 className="my-4 text-2xl font-semibold">Listado de imágenes</h2>
-        <div className='my-4'>
-          <button
-            onClick={() => setShowModal(true)}
-            className='bg-blue-600 text-white px-2 py-1 mr-2 rounded'
-          >
-            Subir nueva imagen
-          </button>
-          <button
-            className="bg-blue-600 text-white px-2 py-1 rounded"
-            onClick={handleSaveOrder}
-          >
-            Guardar Orden
-          </button>
+        <div className='w-fit'>
+          <table className="bg-white">
+            <thead>
+              <tr>
+                <th className="border px-2 py-1">Imagen</th>
+                <th className="border px-2 py-1">URL</th>
+                <th className="border px-2 py-1">Posición</th>
+                <th className="border px-2 py-1">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {images.map(image => (
+                <CardImage
+                  key={image.id}
+                  image={image}
+                  handleDelete={handleDelete}
+                  handleSortChange={handleSortChange}
+                />
+              ))}
+            </tbody>
+          </table>
+          <div className='text-right my-4'>
+            <button
+              onClick={() => setShowModal(true)}
+              className='bg-blue-600 text-white px-2 py-1 mr-2 rounded'
+            >
+              Subir imagen
+            </button>
+            <button
+              className="bg-blue-600 text-white px-2 py-1 rounded"
+              onClick={handleSaveOrder}
+            >
+              Guardar Orden
+            </button>
+          </div>
         </div>
-        <table className="bg-white">
-          <thead>
-            <tr>
-              <th className="border px-2 py-1">Imagen</th>
-              <th className="border px-2 py-1">URL</th>
-              <th className="border px-2 py-1">Posición</th>
-              <th className="border px-2 py-1">Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            {images.map(image => (
-              <CardImage
-                key={image.id}
-                image={image}
-                handleDelete={handleDelete}
-                handleSortChange={handleSortChange}
-              />
-            ))}
-          </tbody>
-        </table>
       </div>
 
       {showModal && (

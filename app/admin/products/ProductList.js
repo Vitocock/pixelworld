@@ -31,19 +31,56 @@ export default function ProductList() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ id: productId })
-      });
+      })
 
-      const data = await res.json();
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Error al eliminar producto')
 
-      if (!res.ok) throw new Error(data.error || 'Error al eliminar producto');
-
-      alert("Producto eliminado correctamente");
-      fetchProducts(); // Recargar lista
+      alert("Producto eliminado correctamente")
+      fetchProducts()
     } catch (err) {
-      console.error(err);
-      alert("Hubo un error al eliminar el producto");
+      console.error(err)
+      alert("Hubo un error al eliminar el producto")
     }
-  };
+  }
+
+  const handleActivate = async (productId) => {
+    try {
+      const res = await fetch('/api/admin/products/activateProduct', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: productId })
+      })
+
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      fetchProducts()
+    } catch (err) {
+      console.error(err)
+      alert("Error al activar el producto")
+    }
+  }
+
+  const handleDeactivate = async (productId) => {
+    try {
+      const res = await fetch('/api/admin/products/deactivateProduct', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: productId })
+      })
+
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      fetchProducts()
+    } catch (err) {
+      console.error(err)
+      alert("Error al desactivar el producto")
+    }
+  }
 
   const onSave = () => {
     fetchProducts()
@@ -91,20 +128,22 @@ export default function ProductList() {
           </thead>
           <tbody>
             {products.map(p => (
-              <tr key={p.id}>
-                <td className="border px-2 py-1">{p.id}</td>
-                <td><img className="w-24" src={p.image} alt={p.name}/></td>
-                <td className="border px-2 py-1">{p.name}</td>
-                <td className="border px-2 py-1">{p.brand}</td>
-                <td className="border px-2 py-1">${p.base_price}</td>
-                <td className="border px-2 py-1 ">
-                  <button className='bg-blue-600 text-white px-2 py-1 rounded' onClick={() => setEditProductId(p.id)}>Editar</button>
-                  <button
-                    className="bg-red-600 text-white px-2 py-1 rounded"
-                    onClick={() => handleDelete(p.id)}
-                  >
-                    Eliminar
-                  </button>
+              <tr className={p.active ? "" : "bg-slate-300"} key={p.id}>
+                <td className="border px-2 py-1 text-center">{p.id}</td>
+                <td className='text-center'><img className="w-24 mx-auto" src={p.image} alt={p.name} /></td>
+                <td className="border px-2 py-1 text-center">{p.name}</td>
+                <td className="border px-2 py-1 text-center">{p.brand}</td>
+                <td className="border px-2 py-1 text-center">${p.base_price}</td>
+                <td className="border py-1 text-center ">
+                  <div className="flex justify-center space-x-2">
+                    <button className='bg-blue-600 text-white px-2 py-1 rounded' onClick={() => setEditProductId(p.id)}>Editar</button>
+                    <button className="bg-red-600 text-white px-2 py-1 rounded" onClick={() => handleDelete(p.id)}>Eliminar</button>
+                    {p.active ? (
+                      <button className="bg-yellow-500 text-white px-2 py-1 rounded" onClick={() => handleDeactivate(p.id)}>Desactivar</button>
+                    ) : (
+                      <button className="bg-green-600 text-white px-2 py-1 rounded" onClick={() => handleActivate(p.id)}>Activar</button>
+                    )}
+                  </div>
                 </td>
               </tr>
             ))}
@@ -122,3 +161,4 @@ export default function ProductList() {
     </div>
   )
 }
+

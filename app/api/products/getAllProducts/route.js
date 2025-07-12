@@ -11,6 +11,7 @@ export async function GET(req) {
     const result = await pool.query(
       `SELECT id, name, brand, base_price, description, image
        FROM product
+       WHERE active = true
        ORDER BY created_at DESC
        LIMIT $1 OFFSET $2`,
       [limit, offset]

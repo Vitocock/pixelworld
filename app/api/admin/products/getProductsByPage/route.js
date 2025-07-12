@@ -11,7 +11,7 @@ export async function GET(req) {
 
     // Obtener productos con límite y offset
     const query = `
-      SELECT id, name, brand, base_price, image
+      SELECT id, name, brand, base_price, image, active
       FROM product
       ORDER BY id
       LIMIT $1 OFFSET $2

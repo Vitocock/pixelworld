@@ -1,14 +1,14 @@
 'use client'
 import { useState } from 'react'
 
-export default function CreateResource() {
+export default function CreateResource({ onClose }) {
   const [name, setName] = useState('')
 
   const onSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      const res = await fetch('/api/admin/plan/createResource', {
+      const res = await fetch('/api/admin/plans/createResource', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -22,6 +22,7 @@ export default function CreateResource() {
         throw new Error(data.error || 'Error al crear el recurso')
       }
       alert("Recurso creado correctamente.")
+      onClose()
     } catch (err) {
       alert("Error al crear recurso.")
     }

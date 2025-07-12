@@ -74,7 +74,7 @@ export default function CreatePlan({ onCreated }) {
   const submitForm = async (event) => {
     event.preventDefault()
     try {
-      const data = await fetch("/api/admin/plan/createPlan", {
+      const data = await fetch("/api/admin/plans/createPlan", {
         method: "POST",
         body: JSON.stringify(planForm)
       })

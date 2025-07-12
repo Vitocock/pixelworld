@@ -10,7 +10,7 @@ export async function POST(req) {
     }
 
     const result = await pool.query(
-      `UPDATE plan SET active = FALSE WHERE id = $1 RETURNING *`,
+      `UPDATE plan SET active = true WHERE id = $1 RETURNING *`,
       [id]
     )
 
