@@ -1,12 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+    const [url, setUrl] = useState("")
+  
+    useEffect(() => {
+      const fetchCatalog = async () => {
+        try {
+          const res = await fetch("/api/images/getCatalog")
+          if (!res.ok) throw new Error("Error al obtener el catálogo")
+          const data = await res.json()
+          
+          // Asumiendo que el backend retorna algo como { url: "/Lista-de-juegos.pdf" }
+          setUrl(data.catalog_url)
+        } catch (error) {
+          console.error("Error al cargar el catálogo:", error)
+        }
+      }
+  
+      fetchCatalog()
+    }, [])
 
   return (
     <header className="flex w-full flex-row justify-center lg:py-2 bg-black fixed top-0 transition-all z-30">
       <nav className="flex w-[90%] sm:w-2/3 justify-between items-center">
-        <a className="flex items-start lg:items-center transform hover:scale-110 transition-all duration-300" href="#home">
+        <a className="flex items-start lg:items-center transform hover:scale-110 transition-all duration-300" href="">
           <img className="size-16" src={"/logo-redondo.png"} />
         </a>
 
@@ -19,7 +37,7 @@ export default function Header() {
               <a href="#gallery">Galeria</a>
             </li>
             <li className="mx-8 transition-all duration-300 hover:mt-2">
-              <a href="/Lista-de-juegos.pdf" target="_blank">Catalogo</a>
+              <a href={url} target="_blank">Catalogo</a>
             </li>
             <li className="mx-8 transition-all duration-300 hover:mt-2">
               <a href="#plans">Planes</a>

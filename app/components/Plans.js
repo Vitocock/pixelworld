@@ -9,6 +9,7 @@ export default function Plans() {
 
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
+  const [isLargeScreen, setIsLargeScreen] = useState(false)
 
   useEffect(() => {
     const fetchPlans = async () => {
@@ -25,6 +26,11 @@ export default function Plans() {
     fetchPlans()
   }, [])
 
+  // Detecta el tamaño de pantalla
+  const checkScreenSize = () => {
+    setIsLargeScreen(window.innerWidth >= 1024)
+  }
+
   const updateScrollButtons = () => {
     const container = scrollRef.current
     if (!container) return
@@ -36,22 +42,26 @@ export default function Plans() {
 
   const scroll = (direction) => {
     const container = scrollRef.current
-    const cardWidth = container.offsetWidth / 3
+    const cardWidth = container.offsetWidth / (isLargeScreen ? 3 : 1)
     container.scrollBy({ left: direction === "left" ? -cardWidth : cardWidth, behavior: "smooth" })
   }
 
-  // Detecta cambios de scroll y tamaño
   useEffect(() => {
-    const container = scrollRef.current
-    if (!container) return
-
+    checkScreenSize()
     updateScrollButtons()
-    container.addEventListener("scroll", updateScrollButtons)
-    window.addEventListener("resize", updateScrollButtons)
+
+    const handleResize = () => {
+      checkScreenSize()
+      updateScrollButtons()
+    }
+
+    const container = scrollRef.current
+    container?.addEventListener("scroll", updateScrollButtons)
+    window.addEventListener("resize", handleResize)
 
     return () => {
-      container.removeEventListener("scroll", updateScrollButtons)
-      window.removeEventListener("resize", updateScrollButtons)
+      container?.removeEventListener("scroll", updateScrollButtons)
+      window.removeEventListener("resize", handleResize)
     }
   }, [plans])
 
@@ -67,9 +77,9 @@ export default function Plans() {
         Si eres una empresa, un colegio o necesitas atención personalizada, contáctanos
       </a>
 
-      {/* Contenedor de scroll con botones */}
+      {/* Contenedor de scroll y botones */}
       <div className="relative w-full mt-8">
-        {canScrollLeft && (
+        {isLargeScreen && plans.length > 3 && canScrollLeft && (
           <button
             onClick={() => scroll("left")}
             className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-full"
@@ -78,18 +88,23 @@ export default function Plans() {
           </button>
         )}
 
+        {/* Scroll horizontal de planes */}
         <div
           ref={scrollRef}
           className="scroll-smooth overflow-x-auto scrollbar-hide flex flex-row snap-x gap-5 px-10"
         >
           {plans.map((plan) => (
-            <div key={plan.id} className="min-w-[33%] flex justify-center snap-center">
+            <div
+              key={plan.id}
+              className="snap-center flex justify-center min-w-full lg:min-w-[33%]" // 👈 1 plan en móvil, 3 en desktop
+            >
               <PricingCard plan={plan} />
             </div>
           ))}
         </div>
 
-        {canScrollRight && (
+        {/* Botón derecha solo en pantallas grandes */}
+        {isLargeScreen && plans.length > 3 && canScrollRight && (
           <button
             onClick={() => scroll("right")}
             className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 px-3 py-2 transition-all duration-300 bg-sky-600 hover:bg-sky-700 text-white rounded-full"
