@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server'
 import pool from '@/lib/db'
+import { requireAdmin } from '@/lib/requireAdmin'
 
 const PAGE_SIZE = 10
 
-export async function GET(req) {
+export const GET = requireAdmin(async (req) => {
   try {
     const { searchParams } = new URL(req.url)
     const page = parseInt(searchParams.get('page')) || 1
@@ -35,4 +36,4 @@ export async function GET(req) {
     )
   }
 }
-
+)

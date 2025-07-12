@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import pool from '@/lib/db'
+import { requireAdmin } from '@/lib/requireAdmin'
 
-export async function POST(req) {
+export const POST = requireAdmin(async (req) => {
   try {
     const { updates } = await req.json()
 
@@ -40,3 +41,4 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Error en el servidor' }, { status: 500 })
   }
 }
+)

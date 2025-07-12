@@ -1,8 +1,9 @@
 // app/api/admin/plans/removeResource/route.js
 import { NextResponse } from 'next/server'
 import pool from '@/lib/db'
+import { requireAdmin } from '@/lib/requireAdmin'
 
-export async function POST(request) {
+export const POST = requireAdmin(async (request) => {
   try {
     const { plan_id, resource_id } = await request.json()
 
@@ -21,3 +22,4 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Error al eliminar recurso' }, { status: 500 })
   }
 }
+)
