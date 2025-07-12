@@ -24,20 +24,20 @@ export default function ImageCarousel({ images , interval}) {
   }, [currentIndex, interval])
 
   return (
-    <div className="relative w-full overflow-hidden">
-      <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+    <div className="relative w-full h-full overflow-hidden">
+      <div className="flex transition-transform duration-500 ease-in-out self-center" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
         {images.map((src, index) => (
           <img
             key={index}
             src={src}
             alt={`Imagen ${index}`}
-            className="w-full flex-shrink-0 object-cover object-center"
+            className="w-full max-h-fit flex-shrink-0 object-cover"
           />
         ))}
       </div>
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition"
+        className="absolute lg:left-4 top-1/2 -translate-y-1/2 bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition"
       >
         ◀
       </button>

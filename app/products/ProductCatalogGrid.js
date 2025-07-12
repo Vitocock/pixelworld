@@ -1,12 +1,36 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ProductCatalog from "./ProductCatalog";
 import ProductWindow from "./ProductWindow";
 
-export default function ProductCatalogGrid({ products }) {
+export default function ProductCatalogGrid({ color }) {
+  const [productsData, setProductsData] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
   const modalRef = useRef(null);
 
-  // Modal: Cierra si haces clic fuera
+  // Fetch de productos
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const url = `/api/products/getAllProducts?page=${currentPage}`
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("Error al obtener productos");
+        const data = await res.json();
+        console.log(data)
+        setProductsData(data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [currentPage]);
+
+  const allProducts = productsData?.products || [];
+  const totalPages = productsData?.pagination?.totalPages || 1;
+  const currentProducts = allProducts;
+
+  // Cierre del modal si haces clic fuera
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -23,7 +47,14 @@ export default function ProductCatalogGrid({ products }) {
     };
   }, [selectedProduct]);
 
-  // Subir scroll al cambiar de página
+  // Scroll to top al cambiar de página
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
+  if (!productsData) {
+    return <div className="text-white text-center">Cargando productos...</div>;
+  }
 
   return (
     <>
@@ -33,22 +64,29 @@ export default function ProductCatalogGrid({ products }) {
             key={product.id}
             Product={product}
             onOpen={() => setSelectedProduct(product)}
-          />
+            color={color}
+            />
         ))}
       </div>
 
       {/* Controles de paginación */}
-      <div className="flex flex-wrap justify-center items-center mt-6 gap-2">
+      <div className="absolute flex flex-wrap justify-center bottom-2 left-[47%] items-center mt-6 gap-2">
         <button
-          className="px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded disabled:hidden"
+          onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+          disabled={currentPage === 1}
+          style={{background: color}}
+          className="px-3 py-2 hover:ring-2 ring-current transition-all duration-300 text-white rounded disabled:opacity-50"
         >
           ◀
         </button>
-        
-
+        <span className="text-white text-lg">
+        {currentPage} / {totalPages}
+        </span>
         <button
-
-          className="px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded disabled:hidden"
+          onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+          disabled={currentPage === totalPages}
+          style={{backgroundColor: color}}
+          className="px-3 py-2 hover:ring-2 ring-current transition-all duration-300 text-white rounded disabled:opacity-50"
         >
           ▶
         </button>

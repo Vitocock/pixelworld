@@ -15,51 +15,43 @@ import Products from "./components/Product";
 
 export default function Home() {
   useEffect(() => {
-    const shadows = document.querySelectorAll(".scroll-shadow");
-    const stroke = document.querySelectorAll(".scroll-stroke");
-    const font = document.querySelectorAll(".scroll-font");
-    const svgIcons = document.querySelectorAll(".scroll-svg path");
+  const shadows = document.querySelectorAll(".scroll-shadow");
+  const stroke = document.querySelectorAll(".scroll-stroke");
+  const font = document.querySelectorAll(".scroll-font");
+  const svgIcons = document.querySelectorAll(".scroll-svg path");
 
-    const palette = [
-      "#00ff00",
-      "#01F540",
-      "#02EC80",
-      "#03E3BF",
-      "#04D9FF",
-      "#0AAEFC",
-      "#1182F9",
-      "#1757F6",
-      "#1D2CF3",
-    ];
+  const palette = [
+    "#00ff00", "#01F540", "#02EC80", "#03E3BF", "#04D9FF",
+    "#0AAEFC", "#1182F9", "#1757F6", "#1D2CF3",
+  ];
 
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const maxScroll = document.body.scrollHeight - window.innerHeight;
-      const ratio = scrollTop / maxScroll;
-      const index = Math.min(
-        palette.length - 1,
-        Math.floor(ratio * palette.length)
-      );
-      const color = palette[index];
+  const handleScroll = () => {
+    const scrollTop = window.scrollY;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    const ratio = scrollTop / maxScroll;
+    const index = Math.min(palette.length - 1, Math.floor(ratio * palette.length));
+    const color = palette[index];
 
-      shadows.forEach((el) => {
-        el.style.backgroundColor = color;
-      });
-      stroke.forEach((el) => {
-        el.style.border = `solid 2px ${color}`;
-      });
-      font.forEach((el) => {
-        el.style.color = color;
-      });
-      svgIcons.forEach((el) => {
-        el.setAttribute("stroke", color);
-      });
-    };
+    document.querySelectorAll(".scroll-shadow").forEach(el => el.style.backgroundColor = color);
+    document.querySelectorAll(".scroll-stroke").forEach(el => el.style.border = `solid 2px ${color}`);
+    document.querySelectorAll(".scroll-font").forEach(el => el.style.color = color);
+    document.querySelectorAll(".scroll-svg path").forEach(el => el.setAttribute("stroke", color));
+  };
 
+  // Ejecutar una vez al montar
+  handleScroll();
+  window.addEventListener("scroll", handleScroll);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // 🧠 Observer para aplicar estilos a nuevos elementos
+  const observer = new MutationObserver(() => handleScroll());
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+    observer.disconnect();
+  };
+}, []);
+
 
   return (
     <div className="w-full">

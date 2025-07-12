@@ -11,7 +11,7 @@ export default function Header() {
         </a>
 
         <div className="flex lg:align-center items-center justify-center">
-          <ul className="hidden xl:flex text-base flex-row press-start-2p-regular uppercase">
+          <ul className="hidden xl:flex text-sm flex-row press-start-2p-regular uppercase">
             <li className="mx-8 whitespace-nowrap transition-all duration-300 hover:mt-2">
               <a href="#about-us">Quienes somos</a>
             </li>
@@ -23,6 +23,9 @@ export default function Header() {
             </li>
             <li className="mx-8 transition-all duration-300 hover:mt-2">
               <a href="#plans">Planes</a>
+            </li>
+            <li className="mx-8 transition-all duration-300 hover:mt-2">
+              <a href="/products" target="_blank">Productos</a>
             </li>
           </ul>
         </div>
@@ -49,6 +52,7 @@ export default function Header() {
           <li><a href="/Lista-de-juegos.pdf" target="_blank" onClick={() => setMobileOpen(false)}>Catalogo</a></li>
           <li><a href="#plans" onClick={() => setMobileOpen(false)}>Planes</a></li>
           <li><a href="#contact" onClick={() => setMobileOpen(false)}>Contacto</a></li>
+          <li><a href="/products" onClick={() => setMobileOpen(false)}>Productos</a></li>
         </ul>
       </nav>
     </header>
