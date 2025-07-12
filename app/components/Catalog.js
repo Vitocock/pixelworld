@@ -12,7 +12,7 @@ export default function Catalog() {
         const data = await res.json()
         
         // Asumiendo que el backend retorna algo como { url: "/Lista-de-juegos.pdf" }
-        setUrl(data.url)
+        setUrl(data.catalog_url)
       } catch (error) {
         console.error("Error al cargar el catálogo:", error)
       }
