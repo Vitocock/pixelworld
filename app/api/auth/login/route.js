@@ -3,8 +3,8 @@
 
     // Usuario hardcodeado (puedes cambiar a DB si quieres)
     const validUser = {
-      username: 'admin',
-      password: '123'
+      username: process.env.ADMIN_USERNAME,
+      password: process.env.ADMIN_PASSWORD
     }
 
     if (username !== validUser.username || password !== validUser.password) {
