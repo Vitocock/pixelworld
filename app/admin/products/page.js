@@ -9,8 +9,8 @@ export default function Home() {
   const [refreshList, setRefreshList] = useState(false)
 
   const handleSave = () => {
-    setRefreshList(prev => !prev) // trigger de cambio
-    setShowCreateModal(false) // cerrar modal
+    setRefreshList(prev => !prev) 
+    setShowCreateModal(false)
   }
 
   return (
@@ -23,8 +23,8 @@ export default function Home() {
       >
         Crear producto
       </button>
-
-      <ProductList key={refreshList} /> {/* se recarga con el cambio de key */}
+    
+      <ProductList key={refreshList} /> 
 
       {showCreateModal && (
         <CreateProductModal

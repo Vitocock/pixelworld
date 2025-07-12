@@ -1,8 +1,8 @@
 'use client'
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 import AddResourceModal from "./AddResourceModal"
 
-export default function Plan({ plan, onRemove, onRefresh }) {
+export default function InactivePlan({ plan, onRemove, onRefresh }) {
   const { id, name, base_price, resources, created_at, sort } = plan
   const [isDisabled, setIsDisabled] = useState(true)
   const [showModal, setShowModal] = useState(false)
@@ -45,11 +45,11 @@ export default function Plan({ plan, onRemove, onRefresh }) {
     }
   }
 
-  const handleDeactivate = async () => {
-    if (!confirm("¿Estás seguro que deseas desactivar este plan?")) return
+  const handleActivate = async () => {
+    if (!confirm("¿Estás seguro que deseas activar este plan?")) return
 
     try {
-      const res = await fetch('/api/admin/plans/deactivatePlan', {
+      const res = await fetch('/api/admin/plans/activatePlan', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id })
@@ -57,14 +57,14 @@ export default function Plan({ plan, onRemove, onRefresh }) {
 
       if (!res.ok) {
         const data = await res.json()
-        throw new Error(data.error || "Error al desactivar el plan")
+        throw new Error(data.error || "Error al activar el plan")
       }
 
-      alert("Plan desactivado con éxito")
+      alert("Plan activado con éxito")
       onRefresh()
     } catch (err) {
       console.error("Error:", err)
-      alert("Hubo un problema al desactivar el plan.")
+      alert("Hubo un problema al activar el plan.")
     }
   }
 
@@ -89,6 +89,29 @@ export default function Plan({ plan, onRemove, onRefresh }) {
       alert('No se pudo eliminar el recurso')
     }
   }
+
+  const handleDelete = async () => {
+    const confirmDelete = confirm(`¿Estás seguro que deseas eliminar el plan "${name}"? Esta acción no se puede deshacer.`)
+    if (!confirmDelete) return
+
+    try {
+      const res = await fetch('/api/admin/plans/deletePlan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id })
+      })
+
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+
+      alert('Plan eliminado correctamente')
+      if (onRemove) onRemove(id)
+    } catch (err) {
+      console.error('Error al eliminar plan:', err)
+      alert('No se pudo eliminar el plan')
+    }
+  }
+
 
   return (
     <div className="bg-white p-4 m-4 w-1/5">
@@ -145,10 +168,11 @@ export default function Plan({ plan, onRemove, onRefresh }) {
       ))}
 
       <div className="mt-4 flex flex-row flex-wrap justify-between text-white">
-        <button className="bg-red-600 p-1 rounded" onClick={handleDeactivate}>Desactivar</button>
+        <button className="bg-green-600 p-1 rounded" onClick={handleActivate}>Activar</button>
         <button className="bg-yellow-400 p-1 rounded" onClick={() => setIsDisabled(!isDisabled)}>Editar</button>
         <button className="bg-blue-600 p-1 rounded" onClick={() => setShowModal(true)}>Agregar recurso</button>
-        <button onClick={handleSubmit} className={`p-1 rounded ${isDisabled ? 'bg-gray-800' : 'bg-green-600'}`} disabled={isDisabled}>Enviar</button>
+        <button className="bg-red-600 p-1 rounded" onClick={handleDelete}>Eliminar</button>
+        <button onClick={handleSubmit} className={`p-1 mt-4 flex-grow rounded ${isDisabled ? 'bg-gray-800' : 'bg-green-600'}`} disabled={isDisabled}>Enviar</button>
       </div>
 
       {showModal && (

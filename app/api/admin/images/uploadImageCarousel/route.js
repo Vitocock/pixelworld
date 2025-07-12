@@ -32,7 +32,7 @@ export async function POST(req) {
     const imageUrl = `https://${bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`;
 
     await pool.query(
-      'INSERT INTO carousel_image (image_url) VALUES ($1)',
+      'INSERT INTO carousel_image (image_url, sort_order) VALUES ($1, 99)',
       [imageUrl]
     );
 

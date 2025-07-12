@@ -4,20 +4,20 @@ import pool from '@/lib/db'
 export async function POST(req) {
   try {
     const body = await req.json()
-    const { id, name, base_price, resources } = body
+    const { id, name, base_price, sort, resources } = body
 
     const client = await pool.connect()
 
     try {
       await client.query('BEGIN')
 
-      // 1. Actualizar el plan
+      // 1. Actualizar el plan incluyendo el campo "sort"
       const updatePlanQuery = `
         UPDATE plan
-        SET name = $1, base_price = $2
-        WHERE id = $3
+        SET name = $1, base_price = $2, sort = $3
+        WHERE id = $4
       `
-      await client.query(updatePlanQuery, [name, base_price, id])
+      await client.query(updatePlanQuery, [name, base_price, sort, id])
 
       // 2. Eliminar recursos anteriores
       await client.query('DELETE FROM plan_resource WHERE plan_id = $1', [id])
