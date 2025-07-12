@@ -70,21 +70,23 @@ export default function ProductCatalogGrid({ color }) {
       </div>
 
       {/* Controles de paginación */}
-      <div className="flex flex-wrap justify-center items-center mt-6 gap-2">
+      <div className="absolute flex flex-wrap justify-center bottom-2 left-[47%] items-center mt-6 gap-2">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
           disabled={currentPage === 1}
-          className="px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded disabled:opacity-50"
+          style={{background: color}}
+          className="px-3 py-2 hover:ring-2 ring-current transition-all duration-300 text-white rounded disabled:opacity-50"
         >
           ◀
         </button>
         <span className="text-white text-lg">
-          Página {currentPage} / {totalPages}
+        {currentPage} / {totalPages}
         </span>
         <button
           onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
           disabled={currentPage === totalPages}
-          className="px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded disabled:opacity-50"
+          style={{backgroundColor: color}}
+          className="px-3 py-2 hover:ring-2 ring-current transition-all duration-300 text-white rounded disabled:opacity-50"
         >
           ▶
         </button>
