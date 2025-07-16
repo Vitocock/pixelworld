@@ -1,54 +1,36 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export default function Header() {
+export default function Header({url}) {
   const [mobileOpen, setMobileOpen] = useState(false);
-    const [url, setUrl] = useState("")
-  
-    useEffect(() => {
-      const fetchCatalog = async () => {
-        try {
-          const res = await fetch("/api/images/getCatalog")
-          if (!res.ok) throw new Error("Error al obtener el catálogo")
-          const data = await res.json()
-          
-          // Asumiendo que el backend retorna algo como { url: "/Lista-de-juegos.pdf" }
-          setUrl(data.catalog_url)
-        } catch (error) {
-          console.error("Error al cargar el catálogo:", error)
-        }
-      }
-  
-      fetchCatalog()
-    }, [])
 
   return (
     <header className="flex w-full flex-row justify-center lg:py-2 bg-black fixed top-0 transition-all z-30">
-      <nav className="flex w-[90%] sm:w-2/3 justify-between items-center">
+      <nav className="flex w-[90%] lg:w-2/3 justify-between items-center">
         <a className="flex items-start lg:items-center transform hover:scale-110 transition-all duration-300" href="">
           <img className="size-16" src={"/logo-redondo.png"} />
         </a>
 
         <div className="flex lg:align-center items-center justify-center">
-          <ul className="hidden xl:flex text-sm flex-row press-start-2p-regular uppercase">
-            <li className="mx-8 whitespace-nowrap transition-all duration-300 hover:mt-2">
+          <ul className="hidden lg:flex text-xs lg:text-sm flex-row lg:gap-12 press-start-2p-regular uppercase">
+            <li className="whitespace-nowrap transition-all duration-300 hover:mt-2">
               <a href="#about-us">Quienes somos</a>
             </li>
-            <li className="mx-8 transition-all duration-300 hover:mt-2">
+            <li className="transition-all duration-300 hover:mt-2">
               <a href="#gallery">Galeria</a>
             </li>
-            <li className="mx-8 transition-all duration-300 hover:mt-2">
+            <li className="transition-all duration-300 hover:mt-2">
               <a href={url} target="_blank">Catalogo</a>
             </li>
-            <li className="mx-8 transition-all duration-300 hover:mt-2">
+            <li className="transition-all duration-300 hover:mt-2">
               <a href="#plans">Planes</a>
             </li>
-            <li className="mx-8 transition-all duration-300 hover:mt-2">
+            <li className="transition-all duration-300 hover:mt-2">
               <a href="/products" target="_blank">Productos</a>
             </li>
           </ul>
         </div>
 
-        <a className="hidden w-52 h-10 px-9 py-3 rounded-md scroll-stroke sm:inline-flex flex-col justify-center items-center self-center transform hover:scale-105 transition-all duration-300" href="#contact">
+        <a className="hidden w-52 h-10 px-9 py-3 rounded-md scroll-stroke lg:inline-flex flex-col justify-center items-center self-center transform hover:scale-105 transition-all duration-300" href="#contact">
           <div className="text-center justify-center scroll-font text-sm press-start-2p-regular uppercase transition-all duration-300 mt-1">Contacto</div>
         </a>
 

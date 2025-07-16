@@ -6,7 +6,7 @@ import Galery from "./components/Gallery";
 import Plans from "./components/Plans";
 import Offer from "./components/Offer";
 import Contact from "./components/Contact";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Catalog from "./components/Catalog";
 import Pacman from "./components/Pacman";
 import Products from "./components/Product";
@@ -52,10 +52,28 @@ export default function Home() {
   };
 }, []);
 
+    const [url, setUrl] = useState("")
+  
+    useEffect(() => {
+      const fetchCatalog = async () => {
+        try {
+          const res = await fetch("/api/images/getCatalog")
+          if (!res.ok) throw new Error("Error al obtener el catálogo")
+          const data = await res.json()
+          
+          // Asumiendo que el backend retorna algo como { url: "/Lista-de-juegos.pdf" }
+          setUrl(data.catalog_url)
+        } catch (error) {
+          console.error("Error al cargar el catálogo:", error)
+        }
+      }
+  
+      fetchCatalog()
+    }, [])
 
   return (
-    <div className="w-full">
-      <Header />
+    <div className="w-full justify-center">
+      <Header url={url}/>
       <div
         className="scroll-shadow fixed top-3 w-full h-[3rem] transition-all duration-300"
         style={{
@@ -74,8 +92,8 @@ export default function Home() {
         <div className="mx-12 my-16 w-3/5 h-2.5 justify-self-center bg-white rounded-[10px] shadow-[0px_0px_31.700000762939453px_6px_rgba(0,255,0,1.00)] transition-all duration-300 border-4 border-green-500"></div>
         <Offer />
         <Galery />
-        <Catalog />
-        <Plans />
+        <Catalog url={url}/>
+        <Plans url={url}/>
         <Products />
         <Contact />
         <Pacman />
