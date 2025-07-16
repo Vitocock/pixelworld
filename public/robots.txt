@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+# Host
+Host: https://www.pixelworldgc.com
+
+# Sitemaps
+Sitemap: https://www.pixelworldgc.com/sitemap.xml
