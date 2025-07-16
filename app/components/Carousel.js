@@ -25,25 +25,25 @@ export default function ImageCarousel({ images , interval}) {
 
   return (
     <div className="relative w-full h-full overflow-hidden">
-      <div className="flex transition-transform duration-500 ease-in-out self-center" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+      <div className="flex h-full transition-transform duration-500 ease-in-out self-center" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
         {images.map((src, index) => (
           <img
             key={index}
             src={src}
             alt={`Imagen ${index}`}
-            className="w-full max-h-fit flex-shrink-0 object-cover"
+            className="w-full max-h-full flex-shrink-0 object-cover"
           />
         ))}
       </div>
       <button
         onClick={prevSlide}
-        className="absolute lg:left-4 top-1/2 -translate-y-1/2 bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition"
+        className="absolute hidden sm:block lg:left-4 top-1/2 -translate-y-1/2 bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition"
       >
         ◀
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition"
+        className="absolute hidden sm:block right-4 top-1/2 -translate-y-1/2 bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition"
       >
         ▶
       </button>
