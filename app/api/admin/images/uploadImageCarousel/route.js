@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { v4 as uuidv4 } from 'uuid';
 import pool from '@/lib/db';
+import { requireAdmin } from '@/lib/requireAdmin';
 
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
@@ -11,7 +12,7 @@ const s3 = new S3Client({
   }
 });
 
-export async function POST(req) {
+export const POST = requireAdmin(async (req) => {
   try {
     const formData = await req.formData();
     const file = formData.get('image');
@@ -42,3 +43,4 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Error interno al subir imagen' }, { status: 500 });
   }
 }
+)

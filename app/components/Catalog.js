@@ -1,5 +1,7 @@
 "use client"
-export default function Catalog({url}) {
+
+export default function Catalog({catalogUrl}) {
+ 
   return (
     <section className="h-dvh py-12 grid grid-cols-4 lg:grid-cols-5 grid-rows-1 overflow-hidden">
       <img className="col-span-2 object-cover h-full transform hover:scale-105 hover:z-10 transition-all duration-300" src="./Catalog-Pic1(FC25).jpg" />
@@ -14,10 +16,11 @@ export default function Catalog({url}) {
       </div>
 
       {/* Link al catálogo con URL dinámica */}
+      {catalogUrl && (
         <p className="mb-4 absolute lg:justify-self-center self-end transform hover:scale-105 transition-all duration-300 z-20">
           <a
             className="text-center text-white text-3xl lg:text-5xl font-bold font-['Orbitron'] [text-shadow:_0px_0px_45px_rgb(0_0_0_/_1.00)]"
-            href={url}
+            href={catalogUrl}
             target="_blank"
           >
             Haz click para ver nuestro catálogo de juegos

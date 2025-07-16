@@ -1,7 +1,8 @@
 import pool from '@/lib/db';
+import { requireAdmin } from '@/lib/requireAdmin';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export const GET = requireAdmin(async (req) => {
   try {
     // Obtener todos los planes activos, ordenados por sort
     const planQuery = `
@@ -53,4 +54,4 @@ export async function GET() {
     console.error('Error al obtener los planes activos:', error);
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 });
   }
-}
+})

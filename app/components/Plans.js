@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 import PricingCard from "./PricingCard"
 
-export default function Plans({ url }) {
+export default function Plans({ catalogUrl }) {
   const [plans, setPlans] = useState([])
   const scrollRef = useRef(null)
   const cardRefs = useRef([])
@@ -170,7 +170,7 @@ export default function Plans({ url }) {
           Nuestros precios no incluyen traslado, consultar valor según tu comuna.
         </h2>
         <p>
-          <a className="text-base font-[Orbitron] hover:underline" href={url} target="_blank">
+          <a className="text-base font-[Orbitron] hover:underline" href={catalogUrl} target="_blank">
             Consulta por el catálogo de juegos haciendo click aquí.
           </a>
         </p>

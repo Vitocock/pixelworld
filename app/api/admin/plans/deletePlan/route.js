@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import pool from '@/lib/db'
+import { requireAdmin } from '@/lib/requireAdmin'
 
-export async function POST(req) {
+export const POST = requireAdmin(async (req) => {
   try {
     const { id } = await req.json()
 
@@ -31,3 +32,4 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Solicitud inválida o error interno' }, { status: 500 })
   }
 }
+)

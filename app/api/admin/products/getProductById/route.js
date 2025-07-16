@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import pool from '@/lib/db'
+import { requireAdmin } from '@/lib/requireAdmin'
 
-export async function GET(request) {
+export const GET = requireAdmin(async (request) => {
   try {
     const { searchParams } = new URL(request.url)
     const id = searchParams.get('id')
@@ -25,3 +26,4 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })
   }
 }
+)

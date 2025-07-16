@@ -1,6 +1,7 @@
 import pool from "@/lib/db"
+import { requireAdmin } from "@/lib/requireAdmin"
 
-export async function POST(request) {
+export const POST = requireAdmin(async (request) => {
   try {
     const body = await request.json()
     const { name, base_price, resources } = body
@@ -48,3 +49,4 @@ export async function POST(request) {
     return new Response(JSON.stringify({ error: "Error interno del servidor" }), { status: 500 })
   }
 }
+)

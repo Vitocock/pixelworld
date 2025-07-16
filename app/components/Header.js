@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Header({url}) {
+export default function Header({ catalogUrl }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -18,8 +18,8 @@ export default function Header({url}) {
             <li className="transition-all duration-300 hover:mt-2">
               <a href="#gallery">Galeria</a>
             </li>
-            <li className="transition-all duration-300 hover:mt-2">
-              <a href={url} target="_blank">Catalogo</a>
+            <li className="mx-8 transition-all duration-300 hover:mt-2">
+              <a href={catalogUrl} target="_blank">Catalogo</a>
             </li>
             <li className="transition-all duration-300 hover:mt-2">
               <a href="#plans">Planes</a>

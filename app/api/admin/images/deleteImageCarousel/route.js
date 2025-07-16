@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { DeleteObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import pool from '@/lib/db';
+import { requireAdmin } from '@/lib/requireAdmin';
 
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
@@ -15,7 +16,7 @@ function extractKeyFromUrl(url) {
   return parts.slice(3).join('/');
 }
 
-export async function POST(req) {
+export const POST = requireAdmin(async (req) => {
   try {
     const { id, image_url } = await req.json();
 
@@ -38,3 +39,4 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Error al eliminar imagen' }, { status: 500 });
   }
 }
+)

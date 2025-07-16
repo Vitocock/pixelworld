@@ -14,66 +14,65 @@ import Products from "./components/Product";
 
 
 export default function Home() {
+  const [ catalogUrl, setCatalogUrl ] = useState('')
+
   useEffect(() => {
-  const shadows = document.querySelectorAll(".scroll-shadow");
-  const stroke = document.querySelectorAll(".scroll-stroke");
-  const font = document.querySelectorAll(".scroll-font");
-  const svgIcons = document.querySelectorAll(".scroll-svg path");
+    const shadows = document.querySelectorAll(".scroll-shadow");
+    const stroke = document.querySelectorAll(".scroll-stroke");
+    const font = document.querySelectorAll(".scroll-font");
+    const svgIcons = document.querySelectorAll(".scroll-svg path");
 
-  const palette = [
-    "#00ff00", "#01F540", "#02EC80", "#03E3BF", "#04D9FF",
-    "#0AAEFC", "#1182F9", "#1757F6", "#1D2CF3",
-  ];
+    const palette = [
+      "#00ff00", "#01F540", "#02EC80", "#03E3BF", "#04D9FF",
+      "#0AAEFC", "#1182F9", "#1757F6", "#1D2CF3",
+    ];
 
-  const handleScroll = () => {
-    const scrollTop = window.scrollY;
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    const ratio = scrollTop / maxScroll;
-    const index = Math.min(palette.length - 1, Math.floor(ratio * palette.length));
-    const color = palette[index];
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const ratio = scrollTop / maxScroll;
+      const index = Math.min(palette.length - 1, Math.floor(ratio * palette.length));
+      const color = palette[index];
 
-    document.querySelectorAll(".scroll-shadow").forEach(el => el.style.backgroundColor = color);
-    document.querySelectorAll(".scroll-stroke").forEach(el => el.style.border = `solid 2px ${color}`);
-    document.querySelectorAll(".scroll-font").forEach(el => el.style.color = color);
-    document.querySelectorAll(".scroll-svg path").forEach(el => el.setAttribute("stroke", color));
-  };
+      document.querySelectorAll(".scroll-shadow").forEach(el => el.style.backgroundColor = color);
+      document.querySelectorAll(".scroll-stroke").forEach(el => el.style.border = `solid 2px ${color}`);
+      document.querySelectorAll(".scroll-font").forEach(el => el.style.color = color);
+      document.querySelectorAll(".scroll-svg path").forEach(el => el.setAttribute("stroke", color));
+    };
 
-  // Ejecutar una vez al montar
-  handleScroll();
-  window.addEventListener("scroll", handleScroll);
+    // Ejecutar una vez al montar
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
 
-  // 🧠 Observer para aplicar estilos a nuevos elementos
-  const observer = new MutationObserver(() => handleScroll());
-  observer.observe(document.body, { childList: true, subtree: true });
+    // Observer para aplicar estilos a nuevos elementos
+    const observer = new MutationObserver(() => handleScroll());
+    observer.observe(document.body, { childList: true, subtree: true });
 
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-    observer.disconnect();
-  };
-}, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
+    
+  }, []);
 
-    const [url, setUrl] = useState("")
-  
-    useEffect(() => {
-      const fetchCatalog = async () => {
-        try {
-          const res = await fetch("/api/images/getCatalog")
-          if (!res.ok) throw new Error("Error al obtener el catálogo")
-          const data = await res.json()
-          
-          // Asumiendo que el backend retorna algo como { url: "/Lista-de-juegos.pdf" }
-          setUrl(data.catalog_url)
-        } catch (error) {
-          console.error("Error al cargar el catálogo:", error)
-        }
+  useEffect(() => {
+    const fetchCatalog = async () => {
+      try {
+        const res = await fetch("/api/images/getCatalog")
+        if (!res.ok) throw new Error("Error al obtener el catálogo")
+        const data = await res.json()
+        setCatalogUrl(data.catalog_url)
+      } catch (error) {
+        console.error("Error al cargar el catálogo:", error)
       }
-  
-      fetchCatalog()
-    }, [])
+    }
+
+    fetchCatalog()
+  }, [])
 
   return (
-    <div className="w-full justify-center">
-      <Header url={url}/>
+    <div className="w-full">
+      <Header catalogUrl={catalogUrl} />
       <div
         className="scroll-shadow fixed top-3 w-full h-[3rem] transition-all duration-300"
         style={{
@@ -92,8 +91,8 @@ export default function Home() {
         <div className="mx-12 my-16 w-3/5 h-2.5 justify-self-center bg-white rounded-[10px] shadow-[0px_0px_31.700000762939453px_6px_rgba(0,255,0,1.00)] transition-all duration-300 border-4 border-green-500"></div>
         <Offer />
         <Galery />
-        <Catalog url={url}/>
-        <Plans url={url}/>
+        <Catalog catalogUrl={catalogUrl} />
+        <Plans catalogUrl={catalogUrl} />
         <Products />
         <Contact />
         <Pacman />
