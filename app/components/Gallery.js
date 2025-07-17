@@ -22,7 +22,7 @@ export default function Gallery() {
   return (
     <section className="flex flex-col my-16 scroll-mt-18">
       <div
-        className="mb-8 text-center text-white text-4xl font-bold font-['Orbitron'] [text-shadow:_0px_0px_30px_rgb(4_217_255_/_1.00)] scroll-mt-24"
+        className="mb-8 text-center text-white text-4xl lg:text-5xl font-bold font-['Orbitron'] [text-shadow:_0px_0px_30px_rgb(4_217_255_/_1.00)] scroll-mt-24"
         id="gallery">
         Galeria
       </div>
