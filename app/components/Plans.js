@@ -99,7 +99,7 @@ export default function Plans({ catalogUrl }) {
   }, [plans])
 
   return (
-    <section className="my-16 flex flex-col justify-self-center w-full max-w-sm sm:max-w-full lg:w-5/6 py-4">
+    <section className="my-16 flex flex-col justify-self-center w-full max-w-sm sm:max-w-full xl:w-5/6 py-4">
       <div className="mb-4 text-center font-[Orbitron] text-white [text-shadow:_0px_0px_33px_rgb(21_101_185_/_1.00)]">
         <h2 id="plans" className="scroll-mt-24 text-4xl lg:text-5xl font-bold">Nuestros planes</h2>
       </div>
@@ -124,7 +124,7 @@ export default function Plans({ catalogUrl }) {
         {/* Scroll horizontal de planes */}
         <div
           ref={scrollRef}
-          className="scroll-smooth overflow-x-auto scrollbar-hide flex flex-row snap-x gap-5"
+          className="scroll-smooth overflow-x-auto scrollbar-hide flex flex-row snap-x gap-5 sm:px-3 xl:px-0"
         >
           {plans.map((plan, i) => (
             <div

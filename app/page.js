@@ -88,7 +88,7 @@ export default function Home() {
       <Banner />
       <main className="p-6 mt-6 lg:mt-28">
         <AboutUs />
-        <div className="mx-12 my-16 w-3/5 h-2.5 justify-self-center bg-white rounded-[10px] shadow-[0px_0px_31.700000762939453px_6px_rgba(0,255,0,1.00)] transition-all duration-300 border-4 border-green-500"></div>
+        <div className="mx-auto my-16 w-3/5 h-2.5 justify-self-center bg-white rounded-[10px] shadow-[0px_0px_31.700000762939453px_6px_rgba(0,255,0,1.00)] transition-all duration-300 border-4 border-green-500"></div>
         <Offer />
         <Galery />
         <Catalog catalogUrl={catalogUrl} />

@@ -1,6 +1,22 @@
 export default function Pacman() {
+const Ghost = () =>
+  <div>
+    <div className="ghost__body">
+      <svg viewBox="0 0 56 48">
+        <polygon points="0 24, 4 24, 4 12, 8 12, 8 8, 12 8, 12 4, 20 4, 20 0, 36 0, 36 4, 44 4, 44 8, 48 8, 48 12, 52 12, 52 24, 56 24, 56 48, 0 48" />
+      </svg>
+    </div>
+    <div className="ghost__eye ghost__eye--left">
+      <div className="pupil"/>
+    </div>
+    <div className="ghost__eye ghost__eye--right">
+      <div className="pupil"/>
+    </div>
+    <div className="ghost__feet"/>
+  </div>
+
   return (
-    <section className="w-dvh h-[4rem] relative overflow-hidden">
+    <section className="w-full h-[4rem] relative overflow-hidden">
       <div className="animate-pacman-move pacman">
         <div className="pacman_sprite">
           <svg className="is--close">
@@ -14,19 +30,19 @@ export default function Pacman() {
           </svg>
         </div>
       </div>
-      <div className="ghost -translate-x-14">
-        <div className="ghost__body">
-          <svg viewBox="0 0 56 48">
-            <polygon points="0 24, 4 24, 4 12, 8 12, 8 8, 12 8, 12 4, 20 4, 20 0, 36 0, 36 4, 44 4, 44 8, 48 8, 48 12, 52 12, 52 24, 56 24, 56 48, 0 48" />
-          </svg>
-        </div>
-        <div className="ghost__eye ghost__eye--left">
-          <div className="pupil"></div>
-        </div>
-        <div className="ghost__eye ghost__eye--right">
-          <div className="pupil"></div>
-        </div>
-        <div className="ghost__feet"></div>
+      {/* Fantasma naranja */}
+      <div className="ghost ghost--orange -translate-x-14" style={{animationDelay: "400ms",}}>
+        <Ghost/>
+      </div>
+
+      {/* Fantasma azul */}
+      <div className="ghost ghost--blue -translate-x-24" style={{animationDelay: "700ms",}}>
+        <Ghost/>
+      </div>
+
+      {/* Fantasma rosado */}
+      <div className="ghost ghost--pink -translate-x-36" style={{animationDelay: "1000ms",}}>
+        <Ghost/>
       </div>
     </section>
   );

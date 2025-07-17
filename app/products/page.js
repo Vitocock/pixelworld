@@ -53,7 +53,7 @@ export default function Home() {
   };
 
   return (
-    <section className="w-full lg:w-4/5 p-3 lg:p-8 mx-auto">
+    <section className="w-full xl:w-4/5 p-3 lg:p-8 mx-auto">
       <a className="w-fit pb-4 flex font-['orbitron'] hover:-translate-x-8 transition-all duration-300" href="/#home">◀ Volver a la pagina principal</a>
 
       <div className="mb-8 text-center font-['orbitron'] text-white">
