@@ -16,9 +16,9 @@ export default function AdminLayout({ children }) {
   return (
     <div className="bg-gray-100 w-screen min-h-screen">
       {hasToken && (
-        <nav className="bg-blue-800 text-white p-4 flex flex-row">
+        <nav className="bg-blue-800 text-white p-4 w-full flex ">
           <h1 className="text-xl font-bold mr-4">Panel de Administración</h1>
-          <ul className="flex flex-row gap-4">
+          <ul className="flex flex-row justify-end flex-grow flex-wrap gap-4">
             <li><a href="/admin">Planes</a></li>
             <li><a href="/admin/products">Productos</a></li>
             <li><a href="/admin/images">Imágenes</a></li>

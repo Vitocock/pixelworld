@@ -114,7 +114,7 @@ export default function InactivePlan({ plan, onRemove, onRefresh }) {
 
 
   return (
-    <div className="bg-white p-4 m-4 w-1/5">
+    <div className="bg-white p-4 m-4 min-w-fit">
       <div className="text-xl">
         <h3>{name}</h3>
       </div>
@@ -147,7 +147,7 @@ export default function InactivePlan({ plan, onRemove, onRefresh }) {
       </div>
 
       {resources.map((r, i) => (
-        <div className="border-b-2 border-black flex items-center justify-between" key={r.id}>
+        <div className="border-b-2 border-black flex items-center justify-between w-full" key={r.id}>
           <label className="my-2 flex flex-row justify-between w-full mr-2">{r.name}:
             <input
               ref={el => resourceRefs.current[i] = el}
@@ -167,12 +167,12 @@ export default function InactivePlan({ plan, onRemove, onRefresh }) {
         </div>
       ))}
 
-      <div className="mt-4 flex flex-row flex-wrap justify-between text-white">
+      <div className="mt-4 flex flex-row flex-wrap gap-4 justify-between text-white">
         <button className="bg-green-600 p-1 rounded" onClick={handleActivate}>Activar</button>
         <button className="bg-yellow-400 p-1 rounded" onClick={() => setIsDisabled(!isDisabled)}>Editar</button>
         <button className="bg-blue-600 p-1 rounded" onClick={() => setShowModal(true)}>Agregar recurso</button>
         <button className="bg-red-600 p-1 rounded" onClick={handleDelete}>Eliminar</button>
-        <button onClick={handleSubmit} className={`p-1 mt-4 flex-grow rounded ${isDisabled ? 'bg-gray-800' : 'bg-green-600'}`} disabled={isDisabled}>Enviar</button>
+        <button onClick={handleSubmit} className={`p-1 flex-grow rounded ${isDisabled ? 'bg-gray-800' : 'bg-green-600'}`} disabled={isDisabled}>Enviar</button>
       </div>
 
       {showModal && (
