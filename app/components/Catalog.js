@@ -26,7 +26,8 @@ export default function Catalog({catalogUrl}) {
             Haz click para ver nuestro catálogo de juegos
           </a>
         </p>
-      )}
+      )
+    }
     </section>
-  )
+)
 }
