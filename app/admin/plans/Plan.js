@@ -91,7 +91,7 @@ export default function Plan({ plan, onRemove, onRefresh }) {
   }
 
   return (
-    <div className="bg-white p-4 m-4 w-1/5">
+    <div className="bg-white p-4 m-4">
       <div className="text-xl">
         <h3>{name}</h3>
       </div>
@@ -144,7 +144,7 @@ export default function Plan({ plan, onRemove, onRefresh }) {
         </div>
       ))}
 
-      <div className="mt-4 flex flex-row flex-wrap justify-between text-white">
+      <div className="mt-4 flex flex-row flex-wrap gap-4 justify-between text-white">
         <button className="bg-red-600 p-1 rounded" onClick={handleDeactivate}>Desactivar</button>
         <button className="bg-yellow-400 p-1 rounded" onClick={() => setIsDisabled(!isDisabled)}>Editar</button>
         <button className="bg-blue-600 p-1 rounded" onClick={() => setShowModal(true)}>Agregar recurso</button>
