@@ -8,9 +8,9 @@ export default function Banner () {
                     <a className="w-44 bottom-14 self-center sm:absolute h-10 px-16 py-2 bg-green-800 hover:bg-green-600 transform hover:scale-105 transition-all duration-300 rounded-[5px] inline-flex justify-center items-center" href="#contact">
                         <div className="justify-center whitespace-nowrap text-xl font-semibold font-['Exo']">Contáctanos</div>
                     </a>
-                </div>
-                <div className="w-11/12 h-2.5 sm:rotate-90 justify-self-center self-center flex bg-white rounded-[10px] shadow-[0px_0px_31.700000762939453px_6px_rgba(7,202,61,1.00)] border-4 border-green-500"></div>
-                    <div className="py-2 sm:w-full self-center">
+            </div>
+            <div className="m-auto w-11/12 h-2.5 sm:rotate-90  justify-self-center self-center flex bg-white rounded-[10px] shadow-[0px_0px_31.700000762939453px_6px_rgba(7,202,61,1.00)] border-4 border-green-500"></div>
+                <div className="py-2 sm:w-full self-center">
                     <img className="w-full justify-self-center sm:w-full object-fill" src={"/logo-redondo.png"}></img>
                 </div>
             </div>

@@ -88,7 +88,7 @@ export default function Form () {
                     </div>
                 </div>
             </div>
-            <button type="submit" className="flex w-2/3 justify-self-center place-content-center items-center h-12 bg-gradient-to-l from-blue-600 to-blue-700 hover:bg-gradient-to-l hover:from-blue-700 hover:to-blue-800 transition-all duration-700 rounded-[10px] shadow-xs text-white text-2xl font-[Exo] font-semibold leading-6">Enviar</button>
+            <button type="submit" className="flex w-full sm:w-2/3 justify-self-center place-content-center items-center h-12 bg-gradient-to-l from-blue-600 to-blue-700 hover:bg-gradient-to-l hover:from-blue-700 hover:to-blue-800 transition-all duration-700 rounded-[10px] shadow-xs text-white text-2xl font-[Exo] font-semibold leading-6">Enviar</button>
         </form>
     )
 }
