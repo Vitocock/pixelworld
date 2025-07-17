@@ -1,6 +1,6 @@
 export default function Pacman() {
   return (
-    <section className="w-dvh h-[4rem] relative overflow-hidden">
+    <section className="w-full h-[4rem]  relative overflow-hidden">
       <div className="animate-pacman-move pacman">
         <div className="pacman_sprite">
           <svg className="is--close">

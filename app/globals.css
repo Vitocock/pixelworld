@@ -23,6 +23,7 @@ body {
   background: var(--background);
 }
 
+/*Fuentes*/
 .press-start-2p-regular {
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
@@ -42,7 +43,7 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-
+/*Caracterisicas scrollbar*/
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -63,6 +64,7 @@ body {
   border: 2px solid #111;
 }
 
+/*Pacman y fantasmas*/
 @keyframes mouth {
   0% {
     margin-top: 0;
