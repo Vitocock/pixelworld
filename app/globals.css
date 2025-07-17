@@ -113,53 +113,60 @@ body {
 @keyframes ghost-feet {
   0%, 100% {
     box-shadow:
-      4px 0 orange,
-      8px 0 orange,
-      12px 0 orange,
-        
-      4px 4px orange,
-      8px 4px orange,
-        
-      20px 0 orange,
-      24px 0 orange,
-      28px 0 orange,
-      32px 0 orange,
-    
-      24px 4px orange,
-      28px 4px orange,
-      
-      40px 0 orange,
-      44px 0 orange,
-      48px 0 orange,
-      52px 0 orange,
+      4px 0 var(--feet-color),
+      8px 0 var(--feet-color),
+      12px 0 var(--feet-color),
 
-      44px 4px orange,
-      48px 4px orange
+      4px 4px var(--feet-color),
+      8px 4px var(--feet-color),
+
+      20px 0 var(--feet-color),
+      24px 0 var(--feet-color),
+      28px 0 var(--feet-color),
+      32px 0 var(--feet-color),
+
+      24px 4px var(--feet-color),
+      28px 4px var(--feet-color),
+
+      40px 0 var(--feet-color),
+      44px 0 var(--feet-color),
+      48px 0 var(--feet-color),
+      52px 0 var(--feet-color),
+
+      44px 4px var(--feet-color),
+      48px 4px var(--feet-color);
   }
   50% {
     box-shadow:
-      0 4px orange,
-      4px 0 orange,
-        
-      12px 0 orange,
-      16px 0 orange,
-      20px 0 orange,
-      16px 4px orange,
-      20px 4px orange,
-      
-      32px 0 orange,
-      36px 0 orange,
-      40px 0 orange,
-      32px 4px orange,
-      36px 4px orange,
-      
-      48px 0 orange,
-      52px 0 orange,
-      52px 4px orange
+      0 4px var(--feet-color),
+      4px 0 var(--feet-color),
+
+      12px 0 var(--feet-color),
+      16px 0 var(--feet-color),
+      20px 0 var(--feet-color),
+      16px 4px var(--feet-color),
+      20px 4px var(--feet-color),
+
+      32px 0 var(--feet-color),
+      36px 0 var(--feet-color),
+      40px 0 var(--feet-color),
+      32px 4px var(--feet-color),
+      36px 4px var(--feet-color),
+
+      48px 0 var(--feet-color),
+      52px 0 var(--feet-color),
+      52px 4px var(--feet-color);
   }
 }
+
 .animate-pacman-move {
   animation: pacman-move 12s linear infinite;
+}
+
+@media (max-width: 640px){
+  .animate-pacman-move{
+    animation: pacman-move 6s linear infinite;
+  }
 }
 
 .pacman {
@@ -190,13 +197,25 @@ body {
   width: 56px;
   height: 56px;
   animation: pacman-move 12s linear infinite;
-  animation-delay: 500ms;
 }
+
+@media (max-width: 640px){
+  .ghost {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    animation: pacman-move 6s linear infinite;
+  }
+}
+
+.ghost--orange { --feet-color: orange; }
+.ghost--blue   { --feet-color: #1696fe; }
+.ghost--pink   { --feet-color: #f783ac; }
 
 .ghost__body svg {
   width: 100%;
   height: auto;
-  fill: orange;
+  fill: var(--feet-color);
 }
 
 .ghost__feet {
@@ -205,7 +224,7 @@ body {
   left: 0;
   width: 4px;
   height: 4px;
-  background: orange;
+  background: var(--feet-color);
   animation: ghost-feet 0.4s steps(1) infinite;
 }
 
