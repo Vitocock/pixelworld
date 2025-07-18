@@ -18,7 +18,7 @@ export default function ProductCatalog({ Product, onOpen, color }) {
         <h1 className="font-['orbitron'] leading-none text-base sm:text-2xl line-clamp-2 break-words min-h-[1.5rem] sm:min-h-[3rem]">{name}</h1>
       </div>
       <div className="w-4/5 h-[0.0625rem] my-2 self-center bg-slate-700"></div>
-      <div className="font-['exo'] text-base sm:text-2xl">${base_price}</div>
+      <div className="font-['exo'] text-base sm:text-2xl">${Number(base_price).toLocaleString('es-CL')}</div>
       
       <div className="w-full mt-4 flex lg:fixed left-7 bottom-4">
         <button

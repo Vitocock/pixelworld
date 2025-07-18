@@ -96,7 +96,7 @@ return (
 
     {/* Precio y decoraciones */}
     <div className="px-2 font-['Exo'] text-2xl sm:text-3xl lg:text-5xl">
-      ${base_price}
+      ${Number(base_price).toLocaleString('es-CL')}
       <div className="pt-2 sm:pt-4 lg:pt-12 flex justify-between gap-4">
         <div className="flex w-2/5 h-1.5 sm:h-2.5 bg-white rounded-[10px] shadow-[0_0_7.9px_7px_rgba(21,101,185,1)] border-2 sm:border-4 border-sky-500"></div>
         <div className="flex w-2/5 h-1.5 sm:h-2.5 bg-white rounded-[10px] shadow-[0_0_7.9px_7px_rgba(21,101,185,1)] border-2 sm:border-4 border-sky-500"></div>
