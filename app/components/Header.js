@@ -89,7 +89,7 @@ export default function Header({ catalogUrl }) {
           </li>
           <li>
             <a
-              href="/Lista-de-juegos.pdf"
+              href={catalogUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}

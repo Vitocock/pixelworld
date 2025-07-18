@@ -4,7 +4,7 @@ export default function ProductCatalog({ Product, onOpen, color }) {
   return (
     <div
       style={{ borderColor }}
-      className="flex flex-col xs:w-[44%] sm:w-[30%] lg:w-1/5 p-4 lg:h-[32rem] border-2 transition-colors duration-500 
+      className="flex flex-col w-[44%] sm:w-[30%] lg:w-1/5 p-4 lg:h-[32rem] border-2 transition-colors duration-500 
         bg-[radial-gradient(ellipse_127.02%_151.92%_at_15.32%_21.04%,_rgba(164.69,_238.74,_255,_0.20)_0%,_rgba(109.97,_190.80,_244.37,_0.04)_77%,_rgba(69.95,_144.07,_212.50,_0)_100%)]
         shadow-[2px_16px_19px_0px_rgba(0,0,0,0.09)] scroll-stroke backdrop-blur-2xl"
     >
