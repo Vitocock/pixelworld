@@ -11,19 +11,44 @@ export const GET = requireAdmin(async (request) => {
       return NextResponse.json({ error: 'Falta el parámetro id' }, { status: 400 })
     }
 
-    const result = await pool.query(
-      `SELECT id, name, brand, base_price, description FROM product WHERE id = $1`,
+    // Consultar producto principal
+    const productResult = await pool.query(
+      `SELECT id, name, brand, base_price, description, image
+       FROM product
+       WHERE id = $1`,
       [id]
     )
 
-    if (result.rows.length === 0) {
+    if (productResult.rows.length === 0) {
       return NextResponse.json({ error: 'Producto no encontrado' }, { status: 404 })
     }
 
-    return NextResponse.json(result.rows[0])
+    const product = productResult.rows[0]
+
+    // Consultar imágenes secundarias
+    const imagesResult = await pool.query(
+      `SELECT image
+       FROM product_image
+       WHERE product_id = $1`,
+      [id]
+    )
+
+    const secondaryImages = imagesResult.rows.map(r => r.image)
+
+    // Respuesta en el formato esperado por el front
+    const response = {
+      name: product.name,
+      brand: product.brand,
+      base_price: product.base_price,
+      description: product.description,
+      image: product.image,
+      images: secondaryImages
+    }
+
+    return NextResponse.json(response, { status: 200 })
+
   } catch (error) {
     console.error('Error al obtener el producto por ID:', error)
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })
   }
-}
-)
+})

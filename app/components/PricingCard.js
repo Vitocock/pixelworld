@@ -76,7 +76,7 @@ export default function PricingCard({ plan }) {
           {name}
         </h3>
         <span className="py-5 self-stretch justify-center text-white text-3xl sm:text-2xl lg:text-3xl font-['Exo'] uppercase leading-tight tracking-wide">
-          ${base_price}
+          ${Number(base_price).toLocaleString('es-CL')}
         </span>
         <div className="pt-5 justify-between flex flex-row">
           <div className="flex flex-row w-2/5 h-2.5 bg-white rounded-[10px] shadow-[0px_0px_7.9px_7px_rgba(21,101,185,1.00)] border-4 border-sky-500"></div>
