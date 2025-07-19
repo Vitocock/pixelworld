@@ -1,8 +1,27 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Header({ catalogUrl }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        mobileOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(e.target)
+      ) {
+        setMobileOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [mobileOpen]);
 
   return (
     <header className="flex w-full flex-row justify-center lg:py-2 bg-black fixed top-0 transition-all z-30">
@@ -52,6 +71,7 @@ export default function Header({ catalogUrl }) {
 
         {/* Burger */}
         <button
+          ref={buttonRef}
           className="flex w-12 h-full items-center 2xl:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Abrir menú"
@@ -72,6 +92,7 @@ export default function Header({ catalogUrl }) {
 
       {/* Menú móvil */}
       <nav
+        ref={menuRef}
         className={`2xl:hidden fixed right-0 h-full bg-black/90 mt-16 z-20 transition-all duration-500 overflow-hidden ${
           mobileOpen ? "max-w-[32rem]" : "max-w-0"
         }`}
